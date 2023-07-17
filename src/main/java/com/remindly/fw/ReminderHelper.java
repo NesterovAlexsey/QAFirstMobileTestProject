@@ -32,11 +32,11 @@ public class ReminderHelper extends BaseHelper {
   }
 
   public void selectDate(String period,
-                          String month,
-                          int number,
-                          int index,
-                          String period2,
-                          String year) {
+      String month,
+      int number,
+      int index,
+      String period2,
+      String year) {
     tap(By.id("date"));
     swipeToMonth(period, month, number);
     tapOnDate(index);
@@ -92,7 +92,6 @@ public class ReminderHelper extends BaseHelper {
         }
       }
     }
-
   }
 
   public String getSelectedMonth() {
@@ -112,5 +111,30 @@ public class ReminderHelper extends BaseHelper {
     tapWithCoordinates(xMin, yMin);
 
     tap(By.id("ok"));
+  }
+
+  public void addReminderInterval(String numberOfIntervals) {
+    tap(By.id("RepeatNo"));
+    pause(1000);
+
+    //android.widget.EditText
+    type(By.className("android.widget.EditText"), numberOfIntervals);
+    //id ok = button1
+    pause(1000);
+    tap(By.id("android:id/button1"));
+  }
+
+  public void getTypeOfRepetition(int index2) {
+
+    swipe(0.8, 0.6);
+    tap(By.id("RepeatType"));
+    pause(1000);
+    tapOnSelectType(index2);
+
+  }
+
+  private void tapOnSelectType(int index) {
+    List<WebElement> selector = driver.findElements(By.className("android.widget.TextView"));
+    selector.get(index).click();
   }
 }
